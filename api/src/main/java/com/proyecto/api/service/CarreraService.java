@@ -30,17 +30,29 @@ public class CarreraService implements ICarreraService{
 
     @Override
     public boolean saveCarrera(Carrera carrera) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            carreraRepo.save(carrera);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }       
     }
 
     @Override
     public boolean deleteCarrera(Integer id_carrera) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            carreraRepo.deleteById(id_carrera);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }  
     }
 
     @Override
     public CarreraMateriasDTO getMaterias(Integer id_carrera) {
-        Carrera entidad = carreraRepo.carreraMaterias();
+        Carrera entidad = carreraRepo.carreraMaterias(id_carrera);
         //Carrera entidad = carreraRepo.findById(id_carrera).orElse(null);
         if(entidad !=null){
             CarreraMateriasDTO dto = new CarreraMateriasDTO();

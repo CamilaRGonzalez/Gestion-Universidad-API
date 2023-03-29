@@ -7,6 +7,7 @@ import com.proyecto.api.service.ICarreraService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,8 @@ public class CarreraController {
         return carreraService.getCarreras();
     }
     
-    @GetMapping(path="/materias")
-    public CarreraMateriasDTO gerMaterias(){
-        return carreraService.getMaterias(1);
+    @GetMapping(path="/materias/{id_carrera}")
+    public CarreraMateriasDTO gerMaterias(@PathVariable Integer id_carrera){
+        return carreraService.getMaterias(id_carrera);
     }
 }

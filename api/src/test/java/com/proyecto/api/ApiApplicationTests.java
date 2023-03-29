@@ -36,5 +36,24 @@ class ApiApplicationTests {
             CarreraMateriasDTO dto = service.getMaterias(1);
             System.out.println(dto.toString());
         }
+        
+        @Test
+        void saveCarrera(){
+            Carrera carrera = new Carrera(0,"Glalala",4);
+            boolean exito = service.saveCarrera(carrera);
+            if(exito)
+                System.out.println("exito");
+            else
+                System.out.println("no se pudo crear/editar");
+        }
+        
+        @Test
+        void deleteCarrera(){
+            boolean exito = service.deleteCarrera(3);
+            if(exito)
+                System.out.println("exito");
+            else
+                System.out.println("no se pudo crear/editar");
+        }
 
 }
