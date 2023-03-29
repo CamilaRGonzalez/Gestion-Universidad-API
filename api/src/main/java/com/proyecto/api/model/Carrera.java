@@ -1,6 +1,10 @@
 package com.proyecto.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,10 +22,14 @@ public class Carrera {
     private String nombre;
     private Integer duracion;
     
-    @OneToMany(mappedBy="carrera_materia")
+    @OneToMany(mappedBy="carrera_materia",fetch= FetchType.LAZY)
+    //@JsonIgnore
+    @JsonManagedReference
     private List<Materia> listaMaterias;
     
-    @OneToMany(mappedBy="carrera_alumno")
+    //@JsonIgnore
+    @OneToMany(mappedBy="carrera_alumno",fetch= FetchType.LAZY)
+    @JsonBackReference
     private List<Alumno> listaAlumnos;
     
     public Carrera() {
@@ -32,10 +40,10 @@ public class Carrera {
         this.nombre = nombre;
         this.duracion = duracion;
     }
-      
+
     @Override
     public String toString() {
         return "Carrera{" + "id_carrera=" + id_carrera + ", nombre=" + nombre + ", duracion=" + duracion + '}';
     }
-      
+    
 }

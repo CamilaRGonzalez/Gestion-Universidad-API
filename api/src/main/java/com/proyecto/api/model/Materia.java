@@ -1,5 +1,6 @@
 package com.proyecto.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,13 +23,15 @@ public class Materia {
     private Integer anio;
     
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     @JoinColumn(name="fk_carrera", referencedColumnName="id_carrera")
+    @JsonBackReference
     private Carrera carrera_materia;
     
     @ManyToMany(mappedBy = "listaMateriasAlumno")
-    @JsonIgnore
-    private List<Alumno> books;
+    //@JsonIgnore
+    @JsonBackReference
+    private List<Alumno> alumnosMateria;
 
     public Materia() {
     }
@@ -38,11 +41,10 @@ public class Materia {
         this.nombre = nombre;
         this.anio = anio;
     }
-    
-    
+
     @Override
     public String toString() {
-        return "Materia{" + "id_materia=" + id_materia + ", nombre=" + nombre + ", anio=" + anio + ", carrera_materia=" + carrera_materia + ", books=" + books + '}';
+        return "Materia{" + "id_materia=" + id_materia + ", nombre=" + nombre + ", anio=" + anio + '}';
     }
     
     

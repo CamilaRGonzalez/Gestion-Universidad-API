@@ -1,6 +1,7 @@
 package com.proyecto.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,29 +21,32 @@ import lombok.Setter;
 public class Alumno {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id_alumno;
+    private Long id_alumno;
+    private String dni;
     private String nombre;
     private String apellido;
     private LocalDate fecha_nac;
     
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     @JoinColumn(name="fk_carrera", referencedColumnName="id_carrera")
+    @JsonManagedReference
     private Carrera carrera_alumno;
     
-    
+    //@JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,CascadeType.DETACH,CascadeType.MERGE})
     @JoinTable(
         name = "alumnos_materias",
         joinColumns = @JoinColumn(name = "fk_alumno", nullable = false),
         inverseJoinColumns = @JoinColumn(name="fk_materia", nullable = false)
     )
+    @JsonManagedReference
     private List<Materia> listaMateriasAlumno;
 
     public Alumno() {
     }
 
-    public Alumno(Integer id_alumno, String nombre, String apellido, LocalDate fecha_nac) {
+    public Alumno(Long id_alumno, String nombre, String apellido, LocalDate fecha_nac) {
         this.id_alumno = id_alumno;
         this.nombre = nombre;
         this.apellido = apellido;
