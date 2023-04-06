@@ -8,4 +8,5 @@ public interface IMateriaService {
     List<Materia> getMaterias();
     void saveMateria(Materia materia, Integer id_carrera);
     void eliminarMateria(Integer id_materia);
+    Long contarMateriasPorCarrera(Integer fk_carrera);
 }

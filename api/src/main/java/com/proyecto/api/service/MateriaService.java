@@ -33,5 +33,11 @@ public class MateriaService implements IMateriaService{
     public void eliminarMateria(Integer id_materia) {
         repoMateria.deleteById(id_materia);
     }
+
+    @Override
+    public Long contarMateriasPorCarrera(Integer fk_carrera) {
+        return repoMateria.contarMaterias(fk_carrera);
+        //return 1L;
+    }
     
 }

@@ -21,6 +21,11 @@ public class MateriasTest {
         }
     }
     
+    @Test
+    void contarMaterias(){
+        System.out.println(service.contarMateriasPorCarrera(1));      
+    }
+    
       @Test
     void createMateria(){
         Materia materia = new Materia(0,"pepe I",1);
