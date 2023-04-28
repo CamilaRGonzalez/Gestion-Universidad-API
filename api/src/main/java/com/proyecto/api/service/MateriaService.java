@@ -39,5 +39,10 @@ public class MateriaService implements IMateriaService{
         return repoMateria.contarMaterias(fk_carrera);
         //return 1L;
     }
+
+    @Override
+    public Materia getMateria(Integer id_materia) {
+        return repoMateria.findById(id_materia).orElse(null);
+    }
     
 }
